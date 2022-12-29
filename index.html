@@ -1,0 +1,52 @@
+<html>
+<head>
+   
+    <title>Quiz app</title>
+</head>
+<body>
+    <button onClick="loadmcqs()">Click</button>
+    <script>
+        function loadmcqs(){
+            fetch("https://opentdb.com/api.php?amount=30&category=18&difficulty=easy&type=multiple")
+            .then(res=>res.json())
+            .then(data =>   { const dat = data.results      
+                              //    console.log(dat)
+          
+ 
+                let html = `<table border="1">`
+                    
+                    html +=  `  <tr>
+                            <th>Catagory</th>
+                            <th>Correct_ans</th>
+                            <th>Difficulty</th>
+                            <th>Question</th>
+                            <th>Type<th/>
+                            
+                            </tr>`
+dat.forEach(v  => {
+    
+    
+ //   for ( let i =0 ; i < 30;i++){      
+                     html +=      `     <tr>
+                                    <td>${v.category}</td>
+                                     <td>${v.correct_answer}</td>
+                                    <td>${v.difficulty}</td>
+                                     <td>${v.question}</td>
+                                     <td>${v.type}</td>
+                                     
+                                     </tr>`
+                                     } )
+                                   // }
+                             html +=       `</table>`
+        
+           document.getElementById("div").innerHTML = html
+                                    
+          })
+        
+    
+}
+        
+   </script>
+    <div id = "div"></div>
+</body>
+</html>
