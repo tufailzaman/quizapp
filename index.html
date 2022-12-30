@@ -1,52 +1,87 @@
 <html>
+
 <head>
-   
+
     <title>Quiz app</title>
+    <style>
+        #div {
+            border: 1px;
+            border-color: black;
+            border-style: solid;
+            height: 300px;
+            width: 1000px;
+            background-color: aqua;
+            padding-top: 100px;
+        }
+    </style>
 </head>
+
 <body>
-    <button onClick="loadmcqs()">Click</button>
+    <div id="div"></div>
+    <div style="text-align: right; margin-right: 300px;"> <button onClick="loadmcqs()"
+            style="font-size: xx-large;">Next</button></div>
     <script>
-        function loadmcqs(){
+        let i = 0
+        function loadmcqs() {
             fetch("https://opentdb.com/api.php?amount=30&category=18&difficulty=easy&type=multiple")
-            .then(res=>res.json())
-            .then(data =>   { const dat = data.results      
-                              //    console.log(dat)
-          
- 
-                let html = `<table border="1">`
-                    
-                    html +=  `  <tr>
-                            <th>Catagory</th>
-                            <th>Correct_ans</th>
-                            <th>Difficulty</th>
-                            <th>Question</th>
-                            <th>Type<th/>
+                .then(res => res.json())
+                .then(data => {
+                    const dat = data.results
+                    //       console.log(dat)
+
+                    let html = `<table border="1" align="center" height="150" width="950" bgcolor="red">`
+
+                    html += `  <tr>
+                            <th >Subject</th>
+                            <th colspan="4" style=" font-size: 25px;">Compueter Science</th>
                             
-                            </tr>`
-dat.forEach(v  => {
-    
-    
- //   for ( let i =0 ; i < 30;i++){      
-                     html +=      `     <tr>
-                                    <td>${v.category}</td>
-                                     <td>${v.correct_answer}</td>
-                                    <td>${v.difficulty}</td>
-                                     <td>${v.question}</td>
-                                     <td>${v.type}</td>
+                            </tr>
+                            <tr>
+                                <th colspan="5" style=" font-size: 25px;">Question No ${i + 1}</th>
+                                
+                                </tr>
+                            `
+                    //dat.forEach(v  => {
+
+
+                    //  for ( let i =0 ; i < 30;i++){  
+
+                    do {
+                        html += `     <tr>
+                                     <td  style=" font-size: 20px;" colspan="5">${dat[i].question}</td>
                                      
+                                     </tr>
+                                     <tr>
+                                        <th><label for="correct" >${dat[i].correct_answer}</label><input onclick = "check()"type="radio" id="correct" value="correct" name="correct" /></th>
+                                        <th><label for="in0" >${dat[i].incorrect_answers[0]}</label><input type="radio" id="in0" value="correct" name="correct" /></th>
+                                        <th><label for="in1" >${dat[i].incorrect_answers[1]}</label><input type="radio" id="in1" value="correct" name="correct" /></th>
+                                        <th><label for="in2" >${dat[i].incorrect_answers[2]}</label><input type="radio" id="in2" value="correct" name="correct" /></th>
                                      </tr>`
-                                     } )
-                                   // }
-                             html +=       `</table>`
-        
-           document.getElementById("div").innerHTML = html
-                                    
-          })
-        
-    
-}
-        
-   </script>
-    <div id = "div"></div>
+                        i++
+                    }
+                    while (i > 50)
+                    //    } )
+                    //        }
+                    html += `</table>`
+                    document.getElementById("div").innerHTML = html
+
+
+                })
+
+        }
+       let correct = []  
+        let score = 0
+        const check = () => {
+            if (i<30){
+              score =  score + 1
+              correct.push("1")
+
+            } 
+         console.log(score)
+        }
+
+    </script>
+
 </body>
+
 </html>
