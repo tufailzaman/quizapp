@@ -10,15 +10,31 @@
             border-style: solid;
             height: 300px;
             width: 1000px;
-            background-color: aqua;
+            background-color:azure;
             padding-top: 100px;
+            margin-left: 120px;
+            margin-top: 10px;
+        }
+        #abc{
+            margin-left: 500px;
+        }
+        #tufail{
+            color: brown;
+            margin-top: 10px;
+            font-size: xx-large;
+            margin-left: 400px;
         }
     </style>
 </head>
 
-<body>
-    <div id="div"></div>
-    <div style="text-align: right; margin-right: 300px;"> <button onClick="loadmcqs()"
+<body bgcolor="lightgray">
+
+
+    <button onclick="loadmcqs()" id = "abc" style="font-size: xx-large;">Start Quiz</button>
+
+
+    <div id="div"> Press the Start Quiz Button to start quiz </div>
+    <div style="text-align: right; margin-right: 181px;"> <button onClick="loadmcqs()"
             style="font-size: xx-large;">Next</button></div>
     <script>
         let i = 0
@@ -80,11 +96,11 @@
         }
         const tufail = () =>{
           let  zaman = correct.length
-            document.getElementById("tufail").textContent = zaman
+            document.getElementById("tufail").textContent ="Correct Question are "+ zaman
         }
 
     </script>
-    <button onclick="tufail()" style="font-size: xx-large;" >Show Result</button>
+    <button onclick="tufail()" style="font-size: xx-large;" id = "abc">Show Result</button>
     <div id ="tufail"></div>
 </body>
 
